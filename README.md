@@ -52,7 +52,7 @@ AI-Data-Analyst-Assistant/
 
 ---
 
-Installation and Setup
+# Installation and Setup
 
 1. Clone the Repository
 
