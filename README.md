@@ -102,18 +102,6 @@ Examples:
 - Netflix dataset
 - Loan dataset
 
----
-
-## screenshots/
-
-Contains screenshots of the working application for GitHub documentation.
-
-Suggested screenshots:
-- overview.png
-- charts.png
-- insights.png
-- qna.png
-- report.png
 
 ---
 
@@ -257,11 +245,6 @@ If an API key is not provided, the system automatically switches to rule-based i
 
 ---
 
-# GitHub Repository Description
-
-AI-powered Streamlit application for exploratory data analysis, KPI dashboards, interactive visualizations, natural language analytics, and AI-generated business insights.
-
----
 
 # Author
 
