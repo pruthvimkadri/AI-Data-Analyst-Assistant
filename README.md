@@ -3,7 +3,7 @@
 An interactive AI-powered data analytics web application built using Python and Streamlit.
 
 This application allows users to upload CSV or Excel datasets and automatically perform exploratory data analysis (EDA), generate interactive visualizations, view KPI dashboards, ask questions in natural language, receive AI-generated insights, and download reports.
-
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://ai-data-analyst-assistant-dihdjusjw4ciry6rcv5bhf.streamlit.app/)
 ---
 
 # Features
