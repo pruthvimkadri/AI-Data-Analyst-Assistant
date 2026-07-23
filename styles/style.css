@@ -1,0 +1,156 @@
+/* =====================================================
+   DecisionAI Professional Theme
+===================================================== */
+
+/* Hide Streamlit branding */
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+/* Main App */
+.main {
+    background-color: #F7F9FC;
+}
+
+/* Page Title */
+h1 {
+    color: #1E3A8A;
+    font-weight: 700;
+}
+
+h2, h3 {
+    color: #374151;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #1E293B;
+}
+
+section[data-testid="stSidebar"] * {
+    color: white;
+}
+
+/* Buttons */
+.stButton > button {
+
+    width: 100%;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    padding: 10px;
+
+    border: none;
+
+    background-color: #2563EB;
+
+    color: white;
+
+    transition: 0.3s;
+}
+
+.stButton > button:hover {
+
+    background-color: #1D4ED8;
+
+    transform: scale(1.02);
+
+}
+
+/* Download Buttons */
+
+.stDownloadButton > button {
+
+    width: 100%;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+}
+
+/* Text Inputs */
+
+.stTextInput input {
+
+    border-radius: 8px;
+
+}
+
+/* Chat Input */
+
+.stChatInput {
+
+    border-radius: 12px;
+
+}
+
+/* DataFrames */
+
+[data-testid="stDataFrame"] {
+
+    border-radius: 12px;
+
+    border: 1px solid #E5E7EB;
+
+}
+
+/* Expanders */
+
+.streamlit-expanderHeader {
+
+    font-weight: bold;
+
+}
+
+/* Metric Cards */
+
+[data-testid="metric-container"] {
+
+    background-color: white;
+
+    border-radius: 14px;
+
+    padding: 15px;
+
+    border: 1px solid #E5E7EB;
+
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+
+}
+
+/* Success Message */
+
+.stAlert {
+
+    border-radius: 10px;
+
+}
+
+/* Horizontal Divider */
+
+hr {
+
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+
+}
+
+/* Footer */
+
+footer {
+
+    visibility: hidden;
+
+}
