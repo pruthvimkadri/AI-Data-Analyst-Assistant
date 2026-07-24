@@ -4,134 +4,249 @@
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red?style=for-the-badge&logo=streamlit)
-![Gemini](https://img.shields.io/badge/Google-Gemini-blue?style=for-the-badge&logo=google)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-black?style=for-the-badge&logo=pandas)
-![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Charts-3F4F75?style=for-the-badge&logo=plotly)
+![Google Gemini](https://img.shields.io/badge/Google-Gemini-blue?style=for-the-badge&logo=google)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analytics-black?style=for-the-badge&logo=pandas)
+![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Dashboards-3F4F75?style=for-the-badge&logo=plotly)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 </p>
----
-## 🌐 Live Demo
 
-🚀 **Try DecisionAI here**
-
-**https://ai-data-analyst-assistant-dihdjusjw4ciry6rcv5bhf.streamlit.app/**
 ---
 
-## 📊 Overview
+# 🌐 Live Demo
 
-DecisionAI is an **AI-powered Business Intelligence platform** that transforms raw business datasets into interactive dashboards, automated KPI reports, executive summaries, and AI-generated strategic recommendations.
+### 🚀 Try DecisionAI
 
-Instead of manually analyzing spreadsheets, users can simply upload a CSV or Excel file and let DecisionAI automatically:
+https://ai-data-analyst-assistant-dihdjusjw4ciry6rcv5bhf.streamlit.app/
+
+---
+
+# 📖 Overview
+
+DecisionAI is an **AI-powered Business Intelligence Platform** that transforms raw business datasets into actionable insights through automated data cleaning, interactive dashboards, deterministic KPI generation, executive reporting, and conversational AI.
+
+Unlike traditional dashboard tools, DecisionAI combines a **deterministic analytics engine** with **Google Gemini** to generate reliable business insights while minimizing AI hallucinations.
+
+Simply upload a CSV or Excel dataset and DecisionAI will automatically:
 
 - Clean and validate data
-- Perform Exploratory Data Analysis (EDA)
+- Detect dataset characteristics
+- Perform business analytics
 - Build interactive dashboards
 - Generate KPIs
 - Produce executive reports
-- Answer business questions using Google Gemini AI
+- Answer business questions using AI
+- Export professional reports
 
 ---
 
-## ✨ Features
+# 🏗️ Architecture
 
-### 📂 Smart Data Upload
-- CSV & Excel support
-- Automatic dataset preview
-- Pagination for large datasets
-- Download filtered datasets
+DecisionAI follows a **hybrid AI architecture**.
+
+Instead of allowing the LLM to calculate business metrics, all KPIs are first computed using deterministic Pandas operations and business rules.
+
+Only verified metrics are sent to Google Gemini for executive-level reasoning and report generation.
+
+```
+Dataset
+    │
+    ▼
+Data Cleaning & Validation
+    │
+    ▼
+Dataset Profiling
+    │
+    ▼
+Business KPI Engine (Pandas)
+    │
+    ▼
+Verified Metrics
+    │
+    ▼
+Prompt Builder
+    │
+    ▼
+Google Gemini
+    │
+    ▼
+Executive Reports
+Business Insights
+AI Assistant
+```
+
+### Why this architecture?
+
+✅ Prevents incorrect KPI calculations
+
+✅ Keeps business metrics deterministic
+
+✅ Reduces hallucination risk
+
+✅ Produces explainable AI-generated reports
 
 ---
 
-### 🧹 Automated Data Cleaning
+# ✨ Features
+
+## 📂 Smart Dataset Upload
+
+- CSV Support
+- Excel Support
+- Automatic preview
+- Dataset pagination
+- Download cleaned datasets
+
+---
+
+## 🧹 Automated Data Cleaning
+
+DecisionAI automatically performs:
 
 - Missing value detection
-- Duplicate removal
+- Duplicate detection
 - Data type validation
-- Dataset quality scoring
 - Column standardization
+- Data quality scoring
+- Outlier detection
+- Dataset profiling
 
 ---
 
-### 📈 Interactive Business Dashboard
+## 🧠 Intelligent Dataset Analysis
 
-Generate interactive dashboards with:
+Automatically generates:
 
-- 📈 Monthly Sales Trend
-- 💰 Monthly Revenue
-- 🌍 Sales by Region
-- 📦 Sales by Category
-- 👥 Customer Segmentation
-- 🏆 Top Customers
-- 📦 Top Products
-- 📊 Quantity Sold
-- 💹 Profit Margin
-- 📉 Sales vs Profit Analysis
-- 🔥 Correlation Heatmap
-- 📊 Customer Distribution
-
-Built using Plotly for interactive exploration.
+- Dataset Summary
+- Dataset Quality Score
+- Dataset Completeness
+- Dataset Type Detection
+- Confidence Score
+- Recommended KPIs
+- Recommended Charts
+- Business Opportunities
 
 ---
 
-### 🤖 AI Business Assistant
+## 📊 Interactive Business Dashboard
 
-Powered by **Google Gemini**, DecisionAI can answer business questions such as:
+Interactive Plotly dashboards include:
+
+- Monthly Sales Trend
+- Revenue Trend
+- Profit Analysis
+- Sales by Region
+- Sales by Category
+- Sales vs Profit
+- Profit Margin
+- Customer Distribution
+- Top Customers
+- Top Products
+- Correlation Heatmap
+- Quantity Analysis
+
+---
+
+## 📈 Business KPI Engine
+
+DecisionAI automatically computes verified business metrics including:
+
+- Total Revenue
+- Total Profit
+- Profit Margin
+- Total Orders
+- Total Customers
+- Units Sold
+- Average Discount
+- Top Category
+- Top Region
+- Best-selling Products
+- High Discount Products
+- Negative Profit Transactions
+
+All KPIs are calculated using deterministic Pandas operations before AI analysis.
+
+---
+
+## 🤖 AI Business Assistant
+
+Powered by Google Gemini.
+
+Ask natural language business questions such as:
 
 - Explain this dashboard
-- Generate executive summary
-- Identify business risks
-- Financial analysis
-- Marketing strategy
-- Growth opportunities
-- CEO reports
+- Generate Executive Summary
+- Financial Analysis
+- Marketing Strategy
+- Risk Analysis
+- CEO Report
+- Business Opportunities
+- Growth Recommendations
 
 Example:
 
-> "Explain the dashboard and summarize the most important findings."
+> Explain the dashboard and summarize the most important findings.
 
 ---
 
-### 📑 AI Report Generator
+## 📑 AI Executive Report Generator
 
 Automatically generates professional reports including:
 
 - Executive Summary
 - KPI Analysis
+- Key Findings
 - Business Insights
 - Opportunities
 - Challenges
 - Risks
-- Recommendations
+- Strategic Recommendations
 - Conclusion
 
-Perfect for business stakeholders and executives.
+Designed for business stakeholders and executive management.
 
 ---
 
-### 📤 Export Center
+## 📤 Export Center
 
-Export results in multiple formats:
+Export reports in multiple formats.
+
+Supported exports:
 
 - CSV
 - Excel
 - JSON KPI Report
-- AI Generated Report
+- AI Executive Report
 
 ---
 
-## 🛠 Tech Stack
+# 🛡️ AI Reliability
 
-| Category | Technologies |
-|----------|--------------|
+DecisionAI follows a hybrid analytics architecture to improve reliability.
+
+Instead of relying on the language model to compute business metrics:
+
+- KPIs are calculated using deterministic Pandas operations.
+- Business rules are evaluated before AI reasoning.
+- Verified metrics are passed to Google Gemini.
+- Gemini focuses only on explanation, summarization, and strategic recommendations.
+
+This approach significantly reduces hallucination risk while preserving the flexibility of natural language AI.
+
+---
+
+# 🛠 Technology Stack
+
+| Category | Technology |
+|-----------|------------|
 | Language | Python |
 | Frontend | Streamlit |
 | AI | Google Gemini API |
 | Data Analysis | Pandas, NumPy |
 | Visualization | Plotly |
 | Excel Support | OpenPyXL |
-| Configuration | dotenv |
-| Others | Regex, JSON |
+| Configuration | Python-dotenv |
+| Utilities | Regex, JSON |
 
 ---
 
@@ -172,9 +287,13 @@ Export results in multiple formats:
 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/DecisionAI.git
+git clone https://github.com/pruthvimkadri/DecisionAI-AI-Powered-Business-Intelligence-Platform.git
+```
 
-cd DecisionAI
+Navigate to the project
+
+```bash
+cd DecisionAI-AI-Powered-Business-Intelligence-Platform
 ```
 
 Install dependencies
@@ -200,31 +319,32 @@ streamlit run app.py
 # 📂 Project Structure
 
 ```
-DecisionAI/
+DecisionAI
 │
 ├── app.py
 ├── requirements.txt
 ├── .env
 │
-├── pages/
+├── components/
 │   ├── overview.py
 │   ├── dashboard.py
 │   ├── reports.py
-│   ├── export.py
+│   ├── ai_assistant.py
+│   ├── export_page.py
 │
 ├── utils/
-│   ├── ai_context.py
 │   ├── analytics.py
+│   ├── ai_context.py
 │   ├── dashboard.py
 │   ├── data_cleaning.py
 │   ├── export.py
+│   ├── executive_summary.py
+│   ├── dynamic_recommendation.py
 │   ├── gpt_engine.py
 │   ├── prompt_builder.py
 │   └── report_generator.py
 │
 ├── assets/
-│
-├── images/
 │
 └── README.md
 ```
@@ -237,19 +357,22 @@ DecisionAI/
 Upload Dataset
         │
         ▼
-Automatic Data Cleaning
+Data Cleaning
         │
         ▼
-Dataset Validation
+Data Validation
+        │
+        ▼
+Dataset Profiling
+        │
+        ▼
+Business KPI Generation
         │
         ▼
 Interactive Dashboard
         │
         ▼
-KPI Generation
-        │
-        ▼
-AI Business Analysis
+Google Gemini
         │
         ▼
 Executive Reports
@@ -262,25 +385,32 @@ Export Reports
 
 # 🎯 Key Highlights
 
-- End-to-End Business Intelligence Platform
-- AI-Powered Executive Reporting
+- Hybrid AI Architecture
+- Deterministic KPI Engine
+- AI Executive Reporting
 - Interactive Plotly Dashboards
-- Automated KPI Generation
-- Natural Language Business Analysis
-- Exportable Reports
-- Business Recommendations using Google Gemini
+- Automated Data Cleaning
+- Business Recommendation Engine
+- Conversational AI Assistant
+- Multi-format Export Support
+- Dataset Profiling
+- Data Quality Assessment
 
 ---
 
-# 🌟 Future Improvements
+# 🚀 Roadmap
+
+Future enhancements include:
 
 - PDF Report Export
-- Multi-language Support
-- Database Connectivity
-- User Authentication
-- Cloud Deployment
+- Database Connectivity (PostgreSQL, Snowflake)
+- Multi-user Authentication
 - Role-based Dashboards
-- Forecasting & Predictive Analytics
+- Predictive Analytics
+- Forecasting
+- Time-series Analysis
+- Scheduled Reports
+- Cloud Data Warehouse Integration
 - Real-time Data Streaming
 
 ---
@@ -293,11 +423,12 @@ This project is licensed under the MIT License.
 
 # 👨‍💻 Author
 
-**Pruthvi M**
+## Pruthvi M
 
-Data Science & AI Enthusiast
+Computer Science Engineer | Data Science & AI Enthusiast
 
-GitHub: https://github.com/pruthvimkadri
+GitHub:
 
+https://github.com/pruthvimkadri
 
-
+---
