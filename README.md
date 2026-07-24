@@ -144,9 +144,9 @@ Export results in multiple formats:
 <img width="1867" height="914" alt="Screenshot (2275)" src="https://github.com/user-attachments/assets/59f3f365-b1df-414c-9797-bf0a7199f5ab" />
 <img width="1887" height="899" alt="Screenshot (2276)" src="https://github.com/user-attachments/assets/bedd91ae-09f4-45d0-b172-2f9da9ac32a1" />
 <img width="1900" height="902" alt="Screenshot (2278)" src="https://github.com/user-attachments/assets/4d964f6b-54fb-45ca-bb41-65fe4e00f8ca" />
+<img width="1886" height="924" alt="Screenshot (2280)" src="https://github.com/user-attachments/assets/93d812c8-5d61-4f33-8db9-d6dff2deabf9" />
 
 ## Dashboard
-<img width="1886" height="924" alt="Screenshot (2280)" src="https://github.com/user-attachments/assets/93d812c8-5d61-4f33-8db9-d6dff2deabf9" />
 <img width="1895" height="919" alt="Screenshot (2282)" src="https://github.com/user-attachments/assets/02a7cd28-3561-433c-9210-98d0dfb33a62" />
 <img width="1864" height="907" alt="Screenshot (2283)" src="https://github.com/user-attachments/assets/0438def1-cd67-423b-b310-32727bc6889e" />
 <img width="1880" height="879" alt="Screenshot (2286)" src="https://github.com/user-attachments/assets/e7eba0e9-752f-477c-a078-27cb508c8f23" />
