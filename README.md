@@ -137,29 +137,31 @@ Export results in multiple formats:
 
 # 📸 Screenshots
 
-## Dashboard
-
-![Dashboard](images/dashboard.png)
-
----
-
-## AI Executive Report
-
-![AI Report](images/report.png)
-
----
-
-## Interactive Analytics
-
-![Analytics](images/analytics.png)
+## Overview
+<img width="1920" height="899" alt="Screenshot (2272)" src="https://github.com/user-attachments/assets/b0314e1c-5780-45e4-8141-6be562ea9e68" />
+<img width="1866" height="895" alt="Screenshot (2273)" src="https://github.com/user-attachments/assets/44627a4f-c684-4760-b65b-9265b9a1e738" />
+<img width="1894" height="894" alt="Screenshot (2274)" src="https://github.com/user-attachments/assets/43d97e03-b795-4131-b865-2a7d19b5d953" />
+<img width="1867" height="914" alt="Screenshot (2275)" src="https://github.com/user-attachments/assets/59f3f365-b1df-414c-9797-bf0a7199f5ab" />
+<img width="1887" height="899" alt="Screenshot (2276)" src="https://github.com/user-attachments/assets/bedd91ae-09f4-45d0-b172-2f9da9ac32a1" />
+<img width="1900" height="902" alt="Screenshot (2278)" src="https://github.com/user-attachments/assets/4d964f6b-54fb-45ca-bb41-65fe4e00f8ca" />
+<img width="1886" height="924" alt="Screenshot (2280)" src="https://github.com/user-attachments/assets/93d812c8-5d61-4f33-8db9-d6dff2deabf9" />
+<img width="1895" height="919" alt="Screenshot (2282)" src="https://github.com/user-attachments/assets/02a7cd28-3561-433c-9210-98d0dfb33a62" />
+<img width="1864" height="907" alt="Screenshot (2283)" src="https://github.com/user-attachments/assets/0438def1-cd67-423b-b310-32727bc6889e" />
+<img width="1880" height="879" alt="Screenshot (2286)" src="https://github.com/user-attachments/assets/e7eba0e9-752f-477c-a078-27cb508c8f23" />
+<img width="1895" height="915" alt="Screenshot (2292)" src="https://github.com/user-attachments/assets/6ee49a2d-8799-42be-ac80-286d7d130fee" />
 
 ---
 
+## AI Assistant
+<img width="1891" height="907" alt="Screenshot (2293)" src="https://github.com/user-attachments/assets/96e5bfed-c44e-43d1-ac92-3f202b823135" />
+<img width="1882" height="892" alt="Screenshot (2294)" src="https://github.com/user-attachments/assets/16795a94-934f-483c-ad1e-c8863a0442f9" />
+
+---
 ## Export Center
 
-![Export](images/export.png)
+<img width="1874" height="905" alt="Screenshot (2299)" src="https://github.com/user-attachments/assets/34e28735-3820-4dd2-bd0d-e8da9d2b99e2" />
 
-> Replace these images with screenshots from your application.
+
 
 ---
 
