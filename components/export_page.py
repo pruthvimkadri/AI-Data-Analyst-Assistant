@@ -104,11 +104,25 @@ def render_export(clean_df):
 
     st.divider()
 
+
+
     # ====================================================
     # AI Report
     # ====================================================
 
     st.subheader("🤖 AI Report")
+
+    history = st.session_state.get("chat_history", [])
+
+    formatted_chat = ""
+
+    for msg in history:
+        role = "User" if msg["role"] == "user" else "DecisionAI"
+
+        formatted_chat += (
+            f"{role}:\n"
+            f"{msg['content']}\n\n"
+        )
 
     report = export_ai_report(
 
@@ -122,27 +136,14 @@ def render_export(clean_df):
             ""
         ),
 
-        chat_history=str(
-
-            st.session_state.get(
-                "chat_history",
-                []
-            )
-
-        )
+        chat_history=formatted_chat
 
     )
 
     st.download_button(
-
         label="⬇ Download AI Report",
-
         data=report,
-
         file_name="decisionai_ai_report.txt",
-
         mime="text/plain",
-
-        use_container_width=True
-
+        width="stretch"
     )

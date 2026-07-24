@@ -97,7 +97,7 @@ business insights.
 # Sidebar
 # ====================================================
 
-api_key, uploaded_file, page = render_sidebar()
+uploaded_file, page = render_sidebar()
 # ====================================================
 # Load and Clean Dataset
 # ====================================================
@@ -288,7 +288,7 @@ elif page == "AI Assistant":
 
     render_ai_assistant(
         clean_df,
-        api_key
+        
     )
 
 # Reports and Export will be added in Part 4.
@@ -302,8 +302,7 @@ elif page == "Reports":
 
     render_reports(
         clean_df,
-        api_key
-    )
+        )
 
 elif page == "Export":
 

@@ -17,10 +17,11 @@ def generate_recommendations(df, domain):
     domain = domain.strip().lower()
 
     recommendations = {
-        "kpis": [],
-        "charts": [],
-        "insights": []
-    }
+    "kpis": [],
+    "charts": [],
+    "insights": [],
+    "executive_summary": ""
+}
 
     # ==========================================
     # RETAIL

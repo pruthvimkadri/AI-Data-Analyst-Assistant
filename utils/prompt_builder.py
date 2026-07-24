@@ -1,327 +1,156 @@
 """
-====================================================
+=========================================================
 DecisionAI Prompt Builder
-====================================================
+=========================================================
 
-Creates structured prompts for the LLM.
+Builds high-quality business prompts for Gemini.
 
-Part A
--------
-✓ System Prompt
-✓ Dataset Summary
-✓ KPI Summary
-✓ Recommendation Summary
-"""
+This module ONLY constructs prompts.
+No API calls are made here.
 
-import json
-
-from .analytics import (
-    calculate_kpis,
-    dataset_overview
-)
-
-from .business_recommendations_v2 import (
-    generate_business_recommendations
-)
-
-
-# ====================================================
-# DecisionAI System Prompt
-# ====================================================
-
-SYSTEM_PROMPT = """
-You are DecisionAI, an expert Business Intelligence,
-Data Analytics and AI Consultant.
-
-Your responsibilities:
-
-1. Analyze uploaded business datasets.
-
-2. Explain KPIs clearly.
-
-3. Identify trends.
-
-4. Detect business risks.
-
-5. Recommend actionable improvements.
-
-6. Never invent numbers.
-
-7. Base every answer only on the provided dataset.
-
-8. If information is unavailable, clearly state that.
-
-9. Give concise but business-oriented answers.
-
-10. Prefer bullet points whenever possible.
+Author: DecisionAI
 """
 
 
-# ====================================================
-# Dataset Context
-# ====================================================
-
-def build_dataset_context(df):
+def build_business_prompt(context: dict, user_question: str) -> str:
     """
-    Creates a concise dataset summary.
+    Build a structured business prompt for Gemini.
     """
 
-    overview = dataset_overview(df)
+    domain = context.get("domain", "General")
 
-    context = {
+    dataset_info = context.get("dataset_info", {})
 
-        "Rows":
-            overview["Rows"],
+    kpis = context.get("kpis", {})
 
-        "Columns":
-            overview["Columns"],
+    executive_summary = context.get("executive_summary", "")
 
-        "Numeric Columns":
-            overview["Numeric Columns"],
-
-        "Categorical Columns":
-            overview["Categorical Columns"],
-
-        "Columns List":
-            list(df.columns)
-
-    }
-
-    return context
-
-
-# ====================================================
-# KPI Context
-# ====================================================
-
-def build_kpi_context(df):
-    """
-    Returns calculated KPIs.
-    """
-
-    return calculate_kpis(df)
-
-
-# ====================================================
-# Recommendation Context
-# ====================================================
-
-def build_recommendation_context(df):
-    """
-    Returns recommendation dictionary.
-    """
-
-    return generate_business_recommendations(df)
-
-
-# ====================================================
-# Convert Context to JSON
-# ====================================================
-
-def context_to_json(context):
-    """
-    Converts dictionaries into readable JSON.
-    """
-
-    return json.dumps(
-        context,
-        indent=4,
-        default=str
-    )
-# ====================================================
-# General Question Prompt
-# ====================================================
-
-def build_question_prompt(df, user_question):
-    """
-    Builds a prompt for answering user questions
-    about the uploaded dataset.
-    """
-
-    dataset = context_to_json(
-        build_dataset_context(df)
-    )
-
-    kpis = context_to_json(
-        build_kpi_context(df)
-    )
-
-    recommendations = context_to_json(
-        build_recommendation_context(df)
-    )
+    insights = context.get("insights", [])
 
     prompt = f"""
-Dataset Information
--------------------
-{dataset}
+You are **DecisionAI**, an experienced Senior Business Intelligence Consultant and Data Analyst.
 
-Business KPIs
--------------
+Your goal is to analyze the provided dataset and answer the user's question using ONLY the supplied information.
+
+# Dataset Information
+
+- Domain: {domain}
+- Rows: {dataset_info.get("rows")}
+- Columns: {dataset_info.get("columns")}
+- Column Names: {dataset_info.get("column_names")}
+- Missing Values: {dataset_info.get("missing_values")}
+- Duplicate Rows: {dataset_info.get("duplicate_rows")}
+
+# Key Performance Indicators (KPIs)
+
 {kpis}
 
-Business Recommendations
-------------------------
-{recommendations}
+# Executive Summary
 
-User Question
--------------
+{executive_summary}
+
+# Business Insights
+"""
+
+    if insights:
+        for i, insight in enumerate(insights, start=1):
+            prompt += f"- {insight}\n"
+    else:
+        prompt += "- No business insights available.\n"
+
+    prompt += f"""
+
+# User Question
+
 {user_question}
 
-Instructions
-------------
-1. Answer ONLY using the dataset context above.
-2. Never invent values.
-3. If information is unavailable, clearly say so.
-4. Explain in simple business language.
-5. Give actionable insights whenever possible.
+# Instructions
+
+You are a Senior Business Intelligence Consultant.
+
+Answer ONLY using the information provided in the dataset context.
+
+If the dataset does not contain enough information, clearly state:
+
+"Insufficient information in the dataset."
+
+Do not invent facts, assumptions, or calculations.
+
+Generate a professional executive-style business report.
+
+## Response Structure
+
+## Executive Summary
+Provide a concise overview of the business performance in 2–4 sentences.
+
+## Key Findings
+Summarize the 3–5 most important findings using bullet points.
+
+## Business Insights
+
+### Trends
+Identify important business trends.
+
+### Opportunities
+Describe the biggest growth opportunities.
+
+### Challenges
+Describe operational or financial challenges.
+
+## Risks
+Summarize the main business risks.
+
+## Recommendations
+
+### Immediate Actions
+Actions to take within the next 30 days.
+
+### Medium-Term Actions
+Actions for the next 3–6 months.
+
+### Long-Term Strategy
+Strategic recommendations for long-term growth.
+
+## Conclusion
+Provide one short concluding paragraph.
+
+## Formatting Rules
+
+- Use Markdown headings (## and ###).
+- Use bullet points for lists.
+- Use numbered lists only for action plans.
+- Use valid Markdown only.
+- Bold text must always use **word** with no spaces inside the asterisks.
+- Never output unmatched or incomplete ** markers.
+- Never generate ASCII tables or box-drawing characters.
+- Never generate code blocks, JSON, XML, or LaTeX.
+- Keep paragraphs short (2–3 sentences).
+- Bold only important KPIs, percentages, revenue figures, and key business metrics.
+- Do not bold every keyword.
+- Leave one blank line between sections.
+- *this must not be displayed
+- Use Markdown headings only (#, ##, ###).
+- Do NOT use bold (**) inside paragraphs.
+- Write plain text for business terms.
+- Leave exactly one space between every word.
+- Never concatenate words or numbers.
+- Examples:
+  - West region
+  - 301 products
+  - Office Supplies category
+- there must be space between each work
+- Avoid repeating the same insight in multiple sections.
+- Always separate words with a single space.
+- Never concatenate words (e.g., write "West region", not "Westregion").
+- Never concatenate category names with surrounding words (e.g., "Technology products", not "Technologyproducts").
+- Keep the response concise (approximately 400–600 words unless the user requests a detailed report).
+- Use proper English grammar and spacing.
+- Always leave exactly one space between consecutive words.
+- Never concatenate words together.
+- Examples:
+  - "West region", not "Westregion"
+  - "Technology products", not "Technologyproducts"
+  - "Office Supplies category", not "Office Suppliescategory"
 """
 
     return prompt
-
-
-# ====================================================
-# Executive Summary Prompt
-# ====================================================
-
-def build_executive_summary_prompt(df):
-    """
-    Prompt for generating an executive report.
-    """
-
-    dataset = context_to_json(
-        build_dataset_context(df)
-    )
-
-    kpis = context_to_json(
-        build_kpi_context(df)
-    )
-
-    prompt = f"""
-Dataset Summary
----------------
-{dataset}
-
-KPIs
-----
-{kpis}
-
-Prepare an Executive Summary.
-
-Include:
-
-1. Overall business performance
-
-2. Revenue overview
-
-3. Profit overview
-
-4. Customer overview
-
-5. Product overview
-
-6. Business risks
-
-7. Growth opportunities
-
-8. Final recommendations
-
-Use professional business language.
-"""
-
-    return prompt
-
-
-# ====================================================
-# KPI Explanation Prompt
-# ====================================================
-
-def build_kpi_prompt(df):
-    """
-    Prompt for KPI explanation.
-    """
-
-    kpis = context_to_json(
-        build_kpi_context(df)
-    )
-
-    return f"""
-Business KPIs
-
-{kpis}
-
-Explain:
-
-1. What each KPI means.
-
-2. Why it is important.
-
-3. Whether the KPI is good or bad.
-
-4. How management can improve it.
-
-Keep explanations concise.
-"""
-
-
-# ====================================================
-# Recommendation Prompt
-# ====================================================
-
-def build_recommendation_prompt(df):
-    """
-    Prompt for AI business recommendations.
-    """
-
-    recommendations = context_to_json(
-        build_recommendation_context(df)
-    )
-
-    return f"""
-Business Recommendations
-
-{recommendations}
-
-Create a structured management report.
-
-Include:
-
-• Priority actions
-
-• Revenue improvements
-
-• Customer strategy
-
-• Product strategy
-
-• Cost reduction ideas
-
-• Long-term growth suggestions
-"""
-
-
-# ====================================================
-# Chart Explanation Prompt
-# ====================================================
-
-def build_chart_prompt(chart_name):
-    """
-    Prompt for chart interpretation.
-    """
-
-    return f"""
-Explain the business meaning of the chart:
-
-{chart_name}
-
-Include:
-
-1. What the chart shows
-
-2. Important trends
-
-3. Risks
-
-4. Opportunities
-
-5. Recommended actions
-"""

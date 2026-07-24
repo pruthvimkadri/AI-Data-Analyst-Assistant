@@ -15,10 +15,7 @@ def render_sidebar():
 
     Returns
     -------
-    api_key : str
-
     uploaded_file : UploadedFile
-
     page : str
     """
 
@@ -26,9 +23,7 @@ def render_sidebar():
 
         st.title("📊 DecisionAI")
 
-        st.caption(
-            "AI-Powered Business Intelligence"
-        )
+        st.caption("AI-Powered Business Intelligence")
 
         st.divider()
 
@@ -40,22 +35,20 @@ def render_sidebar():
 
         uploaded_file = st.file_uploader(
             "Upload CSV Dataset",
-            type=["csv"]
+            type=["csv"],
+            help="Upload a business dataset in CSV format."
         )
 
         st.divider()
 
         # ------------------------------------
-        # OpenAI
+        # AI Status
         # ------------------------------------
 
-        st.subheader("🤖 AI Settings")
+        st.subheader("🤖 AI")
 
-        api_key = st.text_input(
-            "OpenAI API Key",
-            type="password",
-            help="Enter your OpenAI API Key to enable AI features."
-        )
+        st.success("✅ Gemini Connected")
+        st.caption("Model: Gemini Flash Latest")
 
         st.divider()
 
@@ -66,7 +59,7 @@ def render_sidebar():
         st.subheader("🧭 Navigation")
 
         page = st.radio(
-            "Go to",
+            "Select Page",
             [
                 "Overview",
                 "Dashboard",
@@ -82,10 +75,7 @@ def render_sidebar():
         # Footer
         # ------------------------------------
 
-        st.caption("Version 1.0")
+        st.caption("DecisionAI v1.0")
+        st.caption("Built with ❤️ using Streamlit + Gemini")
 
-        st.caption(
-            "Built with ❤️ using Streamlit"
-        )
-
-    return api_key, uploaded_file, page
+    return uploaded_file, page

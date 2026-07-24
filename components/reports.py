@@ -3,50 +3,40 @@
 DecisionAI Reports Page
 ====================================================
 
-AI-generated reports and business insights.
+AI-generated reports powered by Gemini.
+
+Author: DecisionAI
 """
 
 import streamlit as st
 
-from utils.gpt_engine import (
-    create_client,
-    generate_executive_summary,
-    explain_kpis,
-    generate_ai_recommendations,
-    safe_chat
-)
+from utils.ai_context import build_ai_context
+from utils.prompt_builder import build_business_prompt
+from utils.gpt_engine import ask_llm
 
 
-def render_reports(df, api_key):
+def render_reports(df):
     """
-    Render the Reports page.
-
-    Parameters
-    ----------
-    df : pandas.DataFrame
-        Cleaned dataset.
-
-    api_key : str
-        OpenAI API Key.
+    Render the AI Reports page.
     """
 
     st.header("📄 AI Reports")
 
-    if not api_key:
-
-        st.warning(
-            "Please enter your OpenAI API Key in the sidebar."
-        )
-
+    if df is None or df.empty:
+        st.warning("Please upload a dataset first.")
         return
 
-    client = create_client(api_key)
+    # ------------------------------------------------
+    # Build AI Context (used by all reports)
+    # ------------------------------------------------
+
+    context = build_ai_context(df)
 
     tab1, tab2, tab3 = st.tabs(
         [
             "📊 Executive Summary",
             "📈 KPI Analysis",
-            "💡 Recommendations"
+            "💡 Recommendations",
         ]
     )
 
@@ -60,32 +50,35 @@ def render_reports(df, api_key):
 
         if st.button(
             "Generate Executive Summary",
-            key="executive_summary_btn"
+            key="executive_summary_btn",
         ):
 
-            with st.spinner(
-                "Generating executive summary..."
-            ):
+            prompt = build_business_prompt(
+                context=context,
+                user_question="""
+Generate a professional Executive Summary.
 
-                summary = safe_chat(
-                    generate_executive_summary,
-                    client,
-                    df
-                )
+Include:
 
-                st.session_state[
-                    "executive_summary"
-                ] = summary
+- Dataset overview
+- Important business observations
+- Major trends
+- Risks
+- Opportunities
 
-        if st.session_state.get(
-            "executive_summary"
-        ):
-
-            st.write(
-                st.session_state[
-                    "executive_summary"
-                ]
+Do not use ASCII tables.
+Use Markdown headings and bullet points.
+"""
             )
+
+            with st.spinner("Generating executive summary..."):
+
+                summary = ask_llm(prompt)
+
+                st.session_state["executive_summary"] = summary
+
+        if "executive_summary" in st.session_state:
+            st.markdown(st.session_state["executive_summary"])
 
     # ====================================================
     # KPI Analysis
@@ -97,32 +90,35 @@ def render_reports(df, api_key):
 
         if st.button(
             "Explain KPIs",
-            key="kpi_btn"
+            key="kpi_btn",
         ):
 
-            with st.spinner(
-                "Analyzing KPIs..."
-            ):
+            prompt = build_business_prompt(
+                context=context,
+                user_question="""
+Explain the important KPIs.
 
-                explanation = safe_chat(
-                    explain_kpis,
-                    client,
-                    df
-                )
+Include:
 
-                st.session_state[
-                    "kpi_analysis"
-                ] = explanation
+- Revenue performance
+- Profitability
+- Growth trends
+- Customer behaviour
+- Operational insights
 
-        if st.session_state.get(
-            "kpi_analysis"
-        ):
-
-            st.write(
-                st.session_state[
-                    "kpi_analysis"
-                ]
+Do not use ASCII tables.
+Use Markdown headings and bullet points.
+"""
             )
+
+            with st.spinner("Analysing KPIs..."):
+
+                kpis = ask_llm(prompt)
+
+                st.session_state["kpi_analysis"] = kpis
+
+        if "kpi_analysis" in st.session_state:
+            st.markdown(st.session_state["kpi_analysis"])
 
     # ====================================================
     # Recommendations
@@ -130,35 +126,37 @@ def render_reports(df, api_key):
 
     with tab3:
 
-        st.subheader(
-            "AI Business Recommendations"
-        )
+        st.subheader("Business Recommendations")
 
         if st.button(
             "Generate Recommendations",
-            key="recommendation_btn"
+            key="recommendation_btn",
         ):
 
-            with st.spinner(
-                "Generating recommendations..."
-            ):
+            prompt = build_business_prompt(
+                context=context,
+                user_question="""
+Generate strategic business recommendations.
 
-                recommendations = safe_chat(
-                    generate_ai_recommendations,
-                    client,
-                    df
-                )
+Include:
 
-                st.session_state[
-                    "ai_recommendations"
-                ] = recommendations
+- Top business opportunities
+- Cost reduction ideas
+- Revenue improvement suggestions
+- Risks
+- Action plan
+- Next steps
 
-        if st.session_state.get(
-            "ai_recommendations"
-        ):
-
-            st.write(
-                st.session_state[
-                    "ai_recommendations"
-                ]
+Do not use ASCII tables.
+Use Markdown headings and bullet points.
+"""
             )
+
+            with st.spinner("Generating recommendations..."):
+
+                recommendations = ask_llm(prompt)
+
+                st.session_state["ai_recommendations"] = recommendations
+
+        if "ai_recommendations" in st.session_state:
+            st.markdown(st.session_state["ai_recommendations"])

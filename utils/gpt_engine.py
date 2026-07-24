@@ -1,252 +1,171 @@
 """
-====================================================
-DecisionAI GPT Engine
-====================================================
+=========================================================
+DecisionAI Gemini Engine
+=========================================================
 
-Handles communication with OpenAI.
+Responsible only for communicating with Gemini.
 
-Part A
--------
-✓ OpenAI Client
-✓ API Validation
-✓ Chat Completion
+Author: DecisionAI
 """
 
 import os
-
-from openai import OpenAI
+import re
+from pathlib import Path
 
 from dotenv import load_dotenv
+from google import genai
 
-
-# ====================================================
+# ---------------------------------------------------------
 # Load Environment Variables
-# ====================================================
+# ---------------------------------------------------------
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
-
-# ====================================================
-# Default Model
-# ====================================================
-
-DEFAULT_MODEL = os.getenv(
-    "OPENAI_MODEL",
-    "gpt-5.5"
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
 )
 
 
-# ====================================================
-# Create OpenAI Client
-# ====================================================
+# ---------------------------------------------------------
+# Ask Gemini
+# ---------------------------------------------------------
 
-def create_client(api_key=None):
+def ask_llm(prompt: str) -> str:
     """
-    Creates an OpenAI client.
-
-    Parameters
-    ----------
-    api_key : str, optional
-
-    Returns
-    -------
-    OpenAI Client
-    """
-
-    if api_key is None:
-
-        api_key = os.getenv("OPENAI_API_KEY")
-
-    if not api_key:
-
-        raise ValueError(
-            "OpenAI API Key not found."
-        )
-
-    return OpenAI(api_key=api_key)
-
-
-# ====================================================
-# Validate API Key
-# ====================================================
-
-def validate_api_key(api_key):
-    """
-    Returns True if an API key exists.
-    """
-
-    return (
-        api_key is not None
-        and len(api_key.strip()) > 20
-    )
-
-
-# ====================================================
-# Chat Completion
-# ====================================================
-
-def chat_completion(
-    client,
-    system_prompt,
-    user_prompt,
-    model=DEFAULT_MODEL,
-    temperature=0.3,
-    max_tokens=1000
-):
-    """
-    Sends a prompt to OpenAI and
-    returns the generated response.
-    """
-
-    response = client.chat.completions.create(
-
-        model=model,
-
-        messages=[
-
-            {
-                "role": "system",
-                "content": system_prompt
-            },
-
-            {
-                "role": "user",
-                "content": user_prompt
-            }
-
-        ],
-
-        temperature=temperature,
-
-        max_completion_tokens=max_tokens
-
-    )
-
-    return response.choices[0].message.content
-# ====================================================
-# Imports
-# ====================================================
-
-from .prompt_builder import (
-    SYSTEM_PROMPT,
-    build_question_prompt,
-    build_executive_summary_prompt,
-    build_kpi_prompt,
-    build_recommendation_prompt
-)
-
-
-# ====================================================
-# Ask DecisionAI
-# ====================================================
-
-def ask_decision_ai(
-    client,
-    df,
-    question,
-    model=DEFAULT_MODEL
-):
-    """
-    Answers a user question using the dataset.
-    """
-
-    prompt = build_question_prompt(
-        df,
-        question
-    )
-
-    return chat_completion(
-        client=client,
-        system_prompt=SYSTEM_PROMPT,
-        user_prompt=prompt,
-        model=model
-    )
-
-
-# ====================================================
-# Executive Summary
-# ====================================================
-
-def generate_executive_summary(
-    client,
-    df,
-    model=DEFAULT_MODEL
-):
-    """
-    Generates an executive summary.
-    """
-
-    prompt = build_executive_summary_prompt(df)
-
-    return chat_completion(
-        client=client,
-        system_prompt=SYSTEM_PROMPT,
-        user_prompt=prompt,
-        model=model
-    )
-def explain_kpis(
-    client,
-    df,
-    model=DEFAULT_MODEL
-):
-    """
-    Explains all KPIs.
-    """
-
-    prompt = build_kpi_prompt(df)
-
-    return chat_completion(
-        client=client,
-        system_prompt=SYSTEM_PROMPT,
-        user_prompt=prompt,
-        model=model
-    )
-
-
-# ====================================================
-# Business Recommendations
-# ====================================================
-
-def generate_ai_recommendations(
-    client,
-    df,
-    model=DEFAULT_MODEL
-):
-    """
-    Generates AI-powered recommendations.
-    """
-
-    prompt = build_recommendation_prompt(df)
-
-    return chat_completion(
-        client=client,
-        system_prompt=SYSTEM_PROMPT,
-        user_prompt=prompt,
-        model=model
-    )
-
-
-# ====================================================
-# Safe GPT Call
-# ====================================================
-
-def safe_chat(
-    func,
-    *args,
-    **kwargs
-):
-    """
-    Executes GPT functions safely.
-    Returns readable errors instead of crashing.
+    Sends a prompt to Gemini and returns a cleaned response.
     """
 
     try:
 
-        return func(
-            *args,
-            **kwargs
+        response = client.models.generate_content(
+            model="gemini-flash-latest",
+            contents=prompt
         )
 
+        text = response.text or ""
+        # -------------------------------------------------
+        # Cleanup Formatting
+        # -------------------------------------------------
+
+        # Remove excessive blank lines
+        # Remove trailing spaces
+        text = re.sub(r"[ \t]+\n", "\n", text)
+
+# Fix escaped Markdown
+        text = text.replace("\\*", "*")
+        text = text.replace("\\_", "_")
+
+# -------------------------------
+# Fix Markdown Bold Formatting
+# -------------------------------
+
+# Remove spaces after opening **
+# Example: ** Consumer -> **Consumer
+        text = re.sub(r"\*\*\s+", "**", text)
+
+# Remove spaces before closing **
+# Example: Consumer ** -> Consumer**
+        text = re.sub(r"\s+\*\*", "**", text)
+
+# Remove unmatched bold markers
+        if text.count("**") % 2 != 0:
+           text = text.replace("**", "")
+
+# Remove excessive blank lines
+        text = re.sub(r"\n{3,}", "\n\n", text)
+        # Add space after common articles
+        text = re.sub(r"\b(the|The)([A-Z][a-z])", r"\1 \2", text)
+
+# Add space after a bold section if immediately followed by a word
+        text = re.sub(r"(\*\*[^\*]+\*\*)([A-Za-z])", r"\1 \2", text)
+
+# Add space between lowercase and uppercase letters
+# Example: WestRegion -> West Region
+        text = re.sub(r"([a-z])([A-Z])", r"\1 \2", text)
+        # Add space after bold text if Gemini omits it
+        text = re.sub(r"(\*\*[^\*]+\*\*)(?=[A-Za-z])", r"\1 ", text)
+        return text.strip()
+        
     except Exception as e:
 
-        return f"❌ AI Error:\n\n{str(e)}"
+     error = str(e)
+
+     if "RESOURCE_EXHAUSTED" in error or "429" in error:
+        return """
+## ⚠️ Gemini API Quota Exceeded
+
+Your Gemini API project has reached its current free-tier request limit.
+
+Possible solutions:
+
+- Wait for the daily quota to reset
+- Enable billing for your Google AI Studio project
+- Use another Gemini API key
+
+Your application is working correctly. Only the API quota has been exhausted.
+"""
+
+     elif "API_KEY" in error or "API key" in error:
+        return """
+## ❌ Invalid Gemini API Key
+
+Please check your GEMINI_API_KEY in Streamlit Secrets or your .env file.
+"""
+
+     else:
+        return f"""
+## ❌ Gemini Error
+
+{error}
+
+Please verify:
+
+- Internet connection
+- Gemini API Key
+- Model availability
+"""
+
+# ---------------------------------------------------------
+# KPI Explanation
+# ---------------------------------------------------------
+
+def explain_kpis(kpis_text: str) -> str:
+
+    prompt = f"""
+You are an experienced Business Intelligence Analyst.
+
+Explain the following KPIs in simple business language.
+
+KPIs:
+
+{kpis_text}
+"""
+
+    return ask_llm(prompt)
+
+
+# ---------------------------------------------------------
+# Executive Summary
+# ---------------------------------------------------------
+
+def generate_executive_summary(summary_text: str) -> str:
+
+    prompt = f"""
+You are an Executive Business Consultant.
+
+Write a concise executive summary for the following analysis.
+
+Analysis:
+
+{summary_text}
+
+Requirements:
+
+- Maximum 200 words
+- Professional tone
+- Highlight key business insights
+- Mention opportunities and risks
+- End with one actionable recommendation
+"""
+
+    return ask_llm(prompt)

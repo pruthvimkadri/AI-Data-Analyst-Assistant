@@ -30,25 +30,33 @@ def render_dashboard(df):
 
     charts = [
 
-        ("📈 Sales Trend", sales_trend_chart(df)),
+    ("📈 Sales Trend", sales_trend_chart(df)),
 
-        ("🌍 Sales by Region", region_sales_chart(df)),
+    ("💵 Monthly Revenue", monthly_revenue_chart(df)),
 
-        ("📦 Sales by Category", category_sales_chart(df)),
+    ("🌍 Sales by Region", region_sales_chart(df)),
 
-        ("🏆 Top Customers", top_customers_chart(df)),
+    ("📦 Sales by Category", category_sales_chart(df)),
 
-        ("💰 Sales vs Profit", scatter_sales_profit(df)),
+    ("👥 Customer Segment", segment_sales_chart(df)),
 
-        ("📊 Category Distribution", category_pie_chart(df)),
+    ("🏆 Top Customers", top_customers_chart(df)),
 
-        ("📉 Histogram", histogram(df)),
+    ("📦 Top Products", top_products_chart(df)),
 
-        ("📦 Box Plot", boxplot(df)),
+    ("📊 Quantity Sold", quantity_chart(df)),
 
-        ("🔥 Correlation Heatmap", correlation_heatmap(df))
+    ("💰 Sales vs Profit", sales_profit_scatter(df)),
 
-    ]
+    ("📈 Profit Margin", profit_margin_chart(df)),
+
+    ("👤 Customer Distribution", customer_distribution_chart(df)),
+
+    ("🔥 Correlation Heatmap", correlation_heatmap(df)),
+
+    ("⚠ Missing Values", missing_values_chart(df)),
+
+]
 
     for title, fig in charts:
 
