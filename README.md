@@ -1,251 +1,299 @@
-# AI Data Analyst Assistant
+# 🚀 DecisionAI – AI-Powered Business Intelligence Platform
 
-An interactive AI-powered data analytics web application built using Python and Streamlit.
+<p align="center">
 
-This application allows users to upload CSV or Excel datasets and automatically perform exploratory data analysis (EDA), generate interactive visualizations, view KPI dashboards, ask questions in natural language, receive AI-generated insights, and download reports.
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://ai-data-analyst-assistant-dihdjusjw4ciry6rcv5bhf.streamlit.app/)
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red?style=for-the-badge&logo=streamlit)
+![Gemini](https://img.shields.io/badge/Google-Gemini-blue?style=for-the-badge&logo=google)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-black?style=for-the-badge&logo=pandas)
+![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Charts-3F4F75?style=for-the-badge&logo=plotly)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+</p>
+---
+## 🌐 Live Demo
+
+🚀 **Try DecisionAI here**
+
+**https://ai-data-analyst-assistant-dihdjusjw4ciry6rcv5bhf.streamlit.app/**
 ---
 
-# Features
+## 📊 Overview
 
-- Upload CSV and Excel datasets
-- Dataset preview and overview
-- KPI dashboard
-- Missing value analysis
-- Data type detection
-- Statistical summary
-- Outlier detection
-- Correlation heatmap
-- Interactive charts using Plotly
-- AI-generated insights
-- Natural language analytics
-- Business recommendations
-- Downloadable AI report
-- Download cleaned dataset
+DecisionAI is an **AI-powered Business Intelligence platform** that transforms raw business datasets into interactive dashboards, automated KPI reports, executive summaries, and AI-generated strategic recommendations.
 
----
+Instead of manually analyzing spreadsheets, users can simply upload a CSV or Excel file and let DecisionAI automatically:
 
-# Tech Stack
-
-- Python
-- Streamlit
-- Pandas
-- NumPy
-- Plotly
-- Seaborn
-- Matplotlib
-- OpenAI API (Optional)
+- Clean and validate data
+- Perform Exploratory Data Analysis (EDA)
+- Build interactive dashboards
+- Generate KPIs
+- Produce executive reports
+- Answer business questions using Google Gemini AI
 
 ---
 
-# Project Structure
+## ✨ Features
 
-bash
-AI-Data-Analyst-Assistant/
+### 📂 Smart Data Upload
+- CSV & Excel support
+- Automatic dataset preview
+- Pagination for large datasets
+- Download filtered datasets
+
+---
+
+### 🧹 Automated Data Cleaning
+
+- Missing value detection
+- Duplicate removal
+- Data type validation
+- Dataset quality scoring
+- Column standardization
+
+---
+
+### 📈 Interactive Business Dashboard
+
+Generate interactive dashboards with:
+
+- 📈 Monthly Sales Trend
+- 💰 Monthly Revenue
+- 🌍 Sales by Region
+- 📦 Sales by Category
+- 👥 Customer Segmentation
+- 🏆 Top Customers
+- 📦 Top Products
+- 📊 Quantity Sold
+- 💹 Profit Margin
+- 📉 Sales vs Profit Analysis
+- 🔥 Correlation Heatmap
+- 📊 Customer Distribution
+
+Built using Plotly for interactive exploration.
+
+---
+
+### 🤖 AI Business Assistant
+
+Powered by **Google Gemini**, DecisionAI can answer business questions such as:
+
+- Explain this dashboard
+- Generate executive summary
+- Identify business risks
+- Financial analysis
+- Marketing strategy
+- Growth opportunities
+- CEO reports
+
+Example:
+
+> "Explain the dashboard and summarize the most important findings."
+
+---
+
+### 📑 AI Report Generator
+
+Automatically generates professional reports including:
+
+- Executive Summary
+- KPI Analysis
+- Business Insights
+- Opportunities
+- Challenges
+- Risks
+- Recommendations
+- Conclusion
+
+Perfect for business stakeholders and executives.
+
+---
+
+### 📤 Export Center
+
+Export results in multiple formats:
+
+- CSV
+- Excel
+- JSON KPI Report
+- AI Generated Report
+
+---
+
+## 🛠 Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Language | Python |
+| Frontend | Streamlit |
+| AI | Google Gemini API |
+| Data Analysis | Pandas, NumPy |
+| Visualization | Plotly |
+| Excel Support | OpenPyXL |
+| Configuration | dotenv |
+| Others | Regex, JSON |
+
+---
+
+# 📸 Screenshots
+
+## Dashboard
+
+![Dashboard](images/dashboard.png)
+
+---
+
+## AI Executive Report
+
+![AI Report](images/report.png)
+
+---
+
+## Interactive Analytics
+
+![Analytics](images/analytics.png)
+
+---
+
+## Export Center
+
+![Export](images/export.png)
+
+> Replace these images with screenshots from your application.
+
+---
+
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/DecisionAI.git
+
+cd DecisionAI
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Create a `.env` file
+
+```env
+GEMINI_API_KEY=YOUR_API_KEY
+```
+
+Run the application
+
+```bash
+streamlit run app.py
+```
+
+---
+
+# 📂 Project Structure
+
+```
+DecisionAI/
 │
 ├── app.py
 ├── requirements.txt
-├── README.md
+├── .env
 │
-├── datasets/
-│   ├── superstore.csv
-│   ├── netflix_titles.csv
-│   └── loan_data.csv
+├── pages/
+│   ├── overview.py
+│   ├── dashboard.py
+│   ├── reports.py
+│   ├── export.py
 │
 ├── utils/
-│   ├── data_utils.py
-│   ├── insight_utils.py
-│   └── viz_utils.py
+│   ├── ai_context.py
+│   ├── analytics.py
+│   ├── dashboard.py
+│   ├── data_cleaning.py
+│   ├── export.py
+│   ├── gpt_engine.py
+│   ├── prompt_builder.py
+│   └── report_generator.py
 │
-├── charts/
+├── assets/
 │
-└── reports/
-
-
----
-
-# Folder Details
-
-## app.py
-
-Main Streamlit application file.
-
-Contains:
-- file upload logic
-- dataset analysis
-- KPI dashboard
-- visualizations
-- AI insights
-- report generation
-- natural language analytics
+├── images/
+│
+└── README.md
+```
 
 ---
 
-## requirements.txt
+# 📊 Workflow
 
-Contains all required Python libraries for the project.
-
-Install dependencies using:
-
-bash
-pip install -r requirements.txt
-
-
----
-
-## datasets/
-
-Stores sample datasets used for testing and analytics.
-
-Examples:
-- Superstore dataset
-- Netflix dataset
-- Loan dataset
-
-
----
-
-## utils/
-
-Contains helper modules for:
-- data cleaning
-- visualization
-- insight generation
-- utility functions
+```
+Upload Dataset
+        │
+        ▼
+Automatic Data Cleaning
+        │
+        ▼
+Dataset Validation
+        │
+        ▼
+Interactive Dashboard
+        │
+        ▼
+KPI Generation
+        │
+        ▼
+AI Business Analysis
+        │
+        ▼
+Executive Reports
+        │
+        ▼
+Export Reports
+```
 
 ---
 
-# Installation and Setup
+# 🎯 Key Highlights
 
-## 1. Clone the Repository
-
-bash
-git clone https://github.com/your-username/ai-data-analyst-assistant.git
-
-
----
-
-## 2. Navigate to the Project Folder
-
-bash
-cd ai-data-analyst-assistant
-
+- End-to-End Business Intelligence Platform
+- AI-Powered Executive Reporting
+- Interactive Plotly Dashboards
+- Automated KPI Generation
+- Natural Language Business Analysis
+- Exportable Reports
+- Business Recommendations using Google Gemini
 
 ---
 
-## 3. Install Dependencies
+# 🌟 Future Improvements
 
-bash
-pip install -r requirements.txt
-
-
----
-
-## 4. Run the Application
-
-bash
-streamlit run app.py
-
+- PDF Report Export
+- Multi-language Support
+- Database Connectivity
+- User Authentication
+- Cloud Deployment
+- Role-based Dashboards
+- Forecasting & Predictive Analytics
+- Real-time Data Streaming
 
 ---
 
-# How the Application Works
+# 📜 License
 
-1. Upload a CSV or Excel dataset.
-2. The system automatically performs data analysis.
-3. Users can explore:
-   - dataset preview
-   - KPI metrics
-   - missing values
-   - statistical summaries
-   - outlier analysis
-   - correlation matrix
-4. Users can generate interactive charts.
-5. Users can ask questions using natural language.
-6. The app generates AI-based insights and recommendations.
-7. Reports and cleaned datasets can be downloaded.
+This project is licensed under the MIT License.
 
 ---
 
-# Screenshots
+# 👨‍💻 Author
 
-## Dashboard Overview
+**Pruthvi M**
 
-<img width="1920" height="906" alt="Screenshot (2029)" src="https://github.com/user-attachments/assets/7d60ee63-2f35-4004-9b01-5a52493f34e4" />
-<img width="1920" height="840" alt="Screenshot (2030)" src="https://github.com/user-attachments/assets/a80d76f5-7e3b-46f7-b8e3-7017f3840dbe" />
-<img width="1920" height="715" alt="Screenshot (2031)" src="https://github.com/user-attachments/assets/b3c5f946-1313-4bde-bdb8-2b7359512b34" />
-<img width="1920" height="726" alt="Screenshot (2032)" src="https://github.com/user-attachments/assets/87e82e79-8b1d-4f31-bff2-a500c8e62371" />
+Data Science & AI Enthusiast
 
----
-
-## Interactive Charts
-
-<img width="1920" height="775" alt="Screenshot (2034)" src="https://github.com/user-attachments/assets/49e4fe50-59cd-4ecc-b8b3-164e3e3ab723" />
+GitHub: https://github.com/pruthvimkadri
 
 
----
 
-## AI Insights
-
-<img width="1920" height="775" alt="Screenshot (2034)" src="https://github.com/user-attachments/assets/49e4fe50-59cd-4ecc-b8b3-164e3e3ab723" />
-
----
-
-## Natural Language Analytics
-
-<img width="1920" height="627" alt="Screenshot (2035)" src="https://github.com/user-attachments/assets/50dab25d-1d99-4f0b-acee-74e4b5181c94" />
-
----
-
-## AI Report Generation
-
-<img width="1920" height="823" alt="Screenshot (2036)" src="https://github.com/user-attachments/assets/bee8ac62-3f6e-4cf2-a0e0-3c20e993c0cd" />
-
----
-
-# Example Datasets Used
-
-- Superstore Dataset
-- Netflix Titles Dataset
-- Loan Dataset
-
----
-
-# AI Features
-
-The application supports optional GPT-powered insights using the OpenAI API.
-
-If an API key is not provided, the system automatically switches to rule-based insights and recommendations.
-
----
-
-# Future Improvements
-
-- GPT-powered advanced analytics
-- Predictive analytics
-- Forecasting
-- PDF report export
-- Dashboard customization
-- Cloud deployment
-- Voice-based analytics assistant
-
----
-
-# Skills Demonstrated
-
-- Python Programming
-- Data Analysis
-- Exploratory Data Analysis (EDA)
-- Data Visualization
--  Streamlit Development
-- Plotly Visualization
-- Business Intelligence
-- AI-assisted Analytics
-- Git and GitHub
-
----
-
-
-# Author
-
-Pruthvi M
