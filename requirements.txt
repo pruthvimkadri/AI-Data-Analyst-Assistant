@@ -7,3 +7,5 @@ seaborn
 statsmodels
 python-dotenv
 google-genai
+openpyxl
+xlsxwriter
